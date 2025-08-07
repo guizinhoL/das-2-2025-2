@@ -125,3 +125,29 @@ Explicação: Enfatiza a segurança em profundidade. A segurança não deve ser 
 Explicação: Refere-se à prática proativa de identificar, avaliar e mitigar riscos de segurança. Isso envolve ter um plano para lidar com ameaças potenciais, implementar controles de segurança e ter estratégias de resposta a incidentes para minimizar o impacto de qualquer violação.
 
 Em suma, o pilar de Segurança foca em criar uma base sólida de identidade e acesso, garantir a capacidade de auditar e rastrear ações, aplicar segurança em todas as camadas da infraestrutura e ter estratégias robustas para gerenciar e mitigar riscos.
+
+
+## Aula 6/08
+
+
+https://aws.amazon.com/pt/about-aws/global-infrastructure/
+
+elastic comput cloud
+
+
+contend delivery network
+
+IaaS Paas SaaS
+
+impossible travel - camada de seguraça
+
+iam serviço global de segurança a  prate de autenticação e orientação
+
+privilegio minimo da as permissoes necessarias
+
+client side encryption -             criptografia no lado do cliente primeiro criptografa so o outro lado consegue encriptografar o cliente é reponsavel pela criptografia nãoo fornecedor de serviço
+
+server side encryptio
+
+
+
