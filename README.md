@@ -149,5 +149,232 @@ client side encryption -             criptografia no lado do cliente primeiro cr
 
 server side encryptio
 
+#aula 13\8
+
+- identity based policies: 
+
+Attached to: Users, groups, or roles.
+
+Focus: Defines the permissions of an identity.
+
+Answers the question: "What can this identity do?"
+
+Example: A policy attached to a "Developers" group that allows them to create and manage EC2 instances but denies them access to S3 buckets.
 
 
+
+- resorce based polites:
+
+Attached to: Resources (e.g., S3 buckets, SQS queues).
+
+Focus: Defines who has access to a specific resource.
+
+Answers the question: "Who can access this resource?"
+
+Example: A policy on an S3 bucket that allows read-only access to a specific AWS account, enabling cross-account data sharing.
+
+#aula 20\08
+
+-block storage:
+Como funciona: Oferece volumes brutos de armazenamento que são anexados a um servidor.
+
+Acesso: Acessado pelo sistema operacional como se fosse um disco local.
+
+Ideal para: Bancos de dados, sistemas de arquivos de alto desempenho (como em máquinas virtuais) e aplicações que exigem baixa latência e alta performance de leitura/escrita. É a base para a computação tradicional.
+
+Analogia: Peças de LEGO. Você recebe um monte de blocos (peças) e pode construir o que quiser com eles (um sistema de arquivos, um banco de dados, etc.).
+
+
+
+- File share:
+
+Como funciona: Oferece volumes brutos de armazenamento que são anexados a um servidor.
+
+Acesso: Acessado pelo sistema operacional como se fosse um disco local.
+
+Ideal para: Bancos de dados, sistemas de arquivos de alto desempenho (como em máquinas virtuais) e aplicações que exigem baixa latência e alta performance de leitura/escrita. É a base para a computação tradicional.
+
+Analogia: Peças de LEGO. Você recebe um monte de blocos (peças) e pode construir o que quiser com eles (um sistema de arquivos, um banco de dados, etc.).
+
+- Object Store
+
+Como funciona: Armazena dados como objetos em um espaço de endereço plano (bucket).
+
+Acesso: Acessado via APIs web (HTTP/HTTPS) usando seu identificador único.
+
+Ideal para: Armazenar grandes volumes de dados não estruturados, como fotos, vídeos, backups, logs, dados de sites estáticos e datasets para Big Data e IA. É altamente escalável e durável.
+
+Analogia: Um serviço de manobrista (valet). Você entrega seu carro (objeto) e recebe um ticket (identificador único). Você não precisa saber em qual vaga o carro está estacionado; basta apresentar o ticket e o manobrista o trará de volta para você.
+
+
+Resumo geral:
+
+O que é? Um serviço para guardar e recuperar qualquer quantidade de dados, a qualquer hora, de qualquer lugar na web.
+
+Conceitos Principais:
+
+Buckets: São os "contêineres" onde você armazena seus dados. O nome de um bucket precisa ser único globalmente (em toda a AWS). Pense neles como a "raiz" do seu armazenamento.
+
+Objetos: São os arquivos (fotos, vídeos, backups, etc.) e seus metadados. Cada objeto tem uma chave única (um nome/caminho) dentro de um bucket.
+
+Durabilidade e Disponibilidade: O S3 foi projetado para uma durabilidade de 99,999999999% (onze noves), o que significa que se você armazenar 10 milhões de objetos, pode esperar perder um único objeto a cada 10.000 anos, em média. Ele replica automaticamente seus dados em múltiplas instalações físicas para protegê-los contra falhas.
+
+#Dia 03\09
+
+Serviços Computacionais da AWS (EC2 - Elastic Compute Cloud)
+Pense no Amazon EC2 como um serviço que permite "alugar" computadores virtuais na nuvem da Amazon. Em vez de comprar e manter servidores físicos, você pode criar, configurar e rodar esses servidores virtuais (chamados de instâncias) em minutos, pagando apenas pelo tempo que os utiliza.
+
+Com certeza! Aqui está uma explicação detalhada sobre os principais conceitos do serviço de computação da AWS, o EC2.
+
+Serviços Computacionais da AWS (EC2 - Elastic Compute Cloud)
+Pense no Amazon EC2 como um serviço que permite "alugar" computadores virtuais na nuvem da Amazon. Em vez de comprar e manter servidores físicos, você pode criar, configurar e rodar esses servidores virtuais (chamados de instâncias) em minutos, pagando apenas pelo tempo que os utiliza.
+
+O "Elástico" no nome significa que você pode aumentar (scale up) ou diminuir (scale down) a capacidade computacional facilmente, conforme a sua necessidade. Precisa de mais 100 servidores para um evento de marketing? Você os cria. O evento acabou? Você os desliga e para de pagar.
+
+Função Principal: Prover capacidade de computação segura e redimensionável na nuvem para rodar praticamente qualquer tipo de aplicação.
+
+Amazon Machine Images (AMI)
+Uma AMI é o "molde" ou o "template" usado para criar suas instâncias EC2. Ela é uma imagem de disco pré-configurada que contém:
+
+Sistema Operacional: Como Amazon Linux, Ubuntu, Windows Server, etc.
+
+Software e Aplicações: Você pode criar uma AMI com seu servidor web, banco de dados ou qualquer outro software já instalado e configurado.
+
+Configurações e Permissões: Todas as configurações de inicialização e permissões associadas.
+
+ (Burstable - Ex: t2.micro, t3.medium): Uso geral e baixo custo. Ideais para aplicações com picos de uso, como sites de baixo tráfego, blogs e ambientes de desenvolvimento. Elas acumulam "créditos de CPU" para usar quando precisam de mais performance.
+
+m (General Purpose - Ex: m5.large): Equilíbrio entre CPU, memória e rede. São os "canivetes suíços" da AWS, ótimos para servidores web, microsserviços e bancos de dados de pequeno a médio porte.
+
+c (Compute Optimized - Ex: c5.xlarge): Otimizadas para CPU. Têm muito poder de processamento e são ideais para aplicações que exigem muito do processador, como processamento em lote, edição de vídeo, machine learning e servidores de games.
+
+r (Memory Optimized - Ex: r5.large): Otimizadas para Memória RAM. Perfeitas para aplicações que processam grandes volumes de dados na memória, como bancos de dados de alta performance, caches (Redis, Memcached) e análise de Big Data.
+
+g (GPU - Ex: g4dn.xlarge): Equipadas com placas de vídeo (GPUs) da NVIDIA. Usadas para inteligência artificial, machine learning, renderização gráfica e aplicações científicas.
+
+Tipos de Storage (Armazenamento)
+
+Com certeza! Aqui está uma explicação detalhada sobre os principais conceitos do serviço de computação da AWS, o EC2.
+
+Serviços Computacionais da AWS (EC2 - Elastic Compute Cloud)
+Pense no Amazon EC2 como um serviço que permite "alugar" computadores virtuais na nuvem da Amazon. Em vez de comprar e manter servidores físicos, você pode criar, configurar e rodar esses servidores virtuais (chamados de instâncias) em minutos, pagando apenas pelo tempo que os utiliza.
+
+O "Elástico" no nome significa que você pode aumentar (scale up) ou diminuir (scale down) a capacidade computacional facilmente, conforme a sua necessidade. Precisa de mais 100 servidores para um evento de marketing? Você os cria. O evento acabou? Você os desliga e para de pagar.
+
+Função Principal: Prover capacidade de computação segura e redimensionável na nuvem para rodar praticamente qualquer tipo de aplicação.
+
+Amazon Machine Images (AMI)
+Uma AMI é o "molde" ou o "template" usado para criar suas instâncias EC2. Ela é uma imagem de disco pré-configurada que contém:
+
+Sistema Operacional: Como Amazon Linux, Ubuntu, Windows Server, etc.
+
+Software e Aplicações: Você pode criar uma AMI com seu servidor web, banco de dados ou qualquer outro software já instalado e configurado.
+
+Configurações e Permissões: Todas as configurações de inicialização e permissões associadas.
+
+Analogia: Pense em uma AMI como a "imagem de fábrica" do seu celular ou o arquivo de instalação (.iso) de um sistema operacional. Você usa essa imagem base para criar quantas cópias (instâncias) idênticas precisar, economizando um tempo enorme de instalação e configuração. A AWS fornece muitas AMIs prontas, e você também pode criar e customizar as suas.
+
+Tipos de Instâncias
+A AWS oferece centenas de "modelos" de servidores virtuais, chamados Tipos de Instâncias. Cada tipo é otimizado para uma finalidade diferente, equilibrando recursos como CPU, memória RAM, armazenamento e capacidade de rede.
+
+As famílias mais comuns são:
+
+t (Burstable - Ex: t2.micro, t3.medium): Uso geral e baixo custo. Ideais para aplicações com picos de uso, como sites de baixo tráfego, blogs e ambientes de desenvolvimento. Elas acumulam "créditos de CPU" para usar quando precisam de mais performance.
+
+m (General Purpose - Ex: m5.large): Equilíbrio entre CPU, memória e rede. São os "canivetes suíços" da AWS, ótimos para servidores web, microsserviços e bancos de dados de pequeno a médio porte.
+
+c (Compute Optimized - Ex: c5.xlarge): Otimizadas para CPU. Têm muito poder de processamento e são ideais para aplicações que exigem muito do processador, como processamento em lote, edição de vídeo, machine learning e servidores de games.
+
+r (Memory Optimized - Ex: r5.large): Otimizadas para Memória RAM. Perfeitas para aplicações que processam grandes volumes de dados na memória, como bancos de dados de alta performance, caches (Redis, Memcached) e análise de Big Data.
+
+g (GPU - Ex: g4dn.xlarge): Equipadas com placas de vídeo (GPUs) da NVIDIA. Usadas para inteligência artificial, machine learning, renderização gráfica e aplicações científicas.
+
+A escolha do tipo de instância correto é fundamental para garantir a performance da sua aplicação e otimizar os custos.
+
+Tipos de Storage (Armazenamento)
+Quando você cria uma instância EC2, precisa de um lugar para armazenar o sistema operacional e seus dados. Existem duas opções principais:
+
+1. EBS (Elastic Block Store)
+O que é: Um volume de armazenamento em rede, como um "HD externo de alta performance" que você anexa à sua instância.
+
+Persistência: Os dados no EBS persistem (são mantidos) mesmo que a instância EC2 seja desligada ou encerrada. Você pode desanexar um volume EBS de uma instância e anexá-lo a outra, como se estivesse trocando um HD de computador.
+
+Uso: Ideal para armazenar o sistema operacional, bancos de dados, arquivos de aplicações e qualquer dado que precise sobreviver ao ciclo de vida da instância. É a opção padrão e mais recomendada.
+
+Tipos: Existem vários tipos de EBS, como gp2/gp3 (SSD de uso geral), io1/io2 (SSD de altíssima performance) e st1 (HDD otimizado para dados acessados com frequência).
+
+
+2. Instance Store (Armazenamento de Instância)
+O que é: Discos físicos que estão diretamente conectados ao computador host que roda a sua instância EC2.
+
+Persistência: Os dados no Instance Store são temporários (efêmeros). Se a instância for parada, hibernada ou encerrada, TODOS OS DADOS SÃO PERDIDOS permanentemente.
+
+Uso: Ideal para dados temporários que não precisam ser mantidos, como cache, buffers, ou dados que são replicados em outras instâncias. A grande vantagem é a velocidade, pois oferece latência extremamente baixa.
+
+Analogia: Pense no EBS como um HD/SSD principal e no Instance Store como uma memória RAM muito rápida, mas que se apaga quando a energia acaba.
+
+Acesso via SSH (Secure Shell)
+SSH é o protocolo padrão para acessar e administrar servidores Linux de forma segura pela linha de comando. Para se conectar a uma instância EC2 Linux, você usa um par de chaves criptográficas:
+
+Chave Pública: Fica armazenada na instância EC2. Você a seleciona no momento da criação da instância.
+
+Chave Privada: Fica com você, armazenada de forma segura no seu computador (um arquivo com extensão .pem ou .ppk). Ela é o seu "segredo" para provar sua identidade.
+
+
+
+#Dia 10\09
+
+Tipos de Storage (EBS vs. Instance Store)
+Quando você cria uma máquina virtual (instância) na AWS, precisa de um local para armazenar dados. As duas principais opções são EBS e Instance Store, e a principal diferença entre elas é a persistência dos dados
+
+
+
+EBS (Elastic Block Store
+Persistência: Os dados são permanentes. Se você desligar ou destruir a instância, os dados no volume EBS continuam intactos. Você pode até desconectar o volume de uma instância e conectá-lo em outra.
+
+Uso Ideal: É a escolha padrão para a grande maioria dos casos, como armazenar o sistema operacional, bancos de dados, servidores de aplicação e qualquer dado que precise ser durável e seguro.
+
+Flexibilidade: Você pode redimensionar o volume e alterar seu tipo (mais rápido ou mais barato) a qualquer momento.
+
+Instance Store 
+
+Persistência: Os dados são temporários (efêmeros). Se a instância for desligada ou terminada, todos os dados são apagados permanentemente.
+
+Uso Ideal: Perfeito para dados que não precisam ser guardados, como caches, arquivos temporários, ou para partes de um sistema distribuído que já possui replicação (como alguns bancos de dados NoSQL). Sua principal vantagem é a velocidade e a latência extremamente baixa.
+
+Amazon EFS (Elastic File System) 📂
+O EFS é um sistema de arquivos de rede simples, elástico e totalmente gerenciado para ser usado com instâncias Linux.
+
+Protocolo: Usa o protocolo NFS (Network File System), padrão no mundo Linux.
+
+Elasticidade: O armazenamento cresce e diminui automaticamente conforme você adiciona ou remove arquivos. Você não precisa provisionar um tamanho específico.
+
+Uso Ideal: Perfeito para sistemas de gerenciamento de conteúdo (como WordPress), diretórios "home" de usuários compartilhados, e aplicações que precisam de um sistema de arquivos compartilhado e escalável para instâncias Linux.
+
+
+Amazon FSx 🗂️
+O Amazon FSx é uma família de sistemas de arquivos gerenciados para diferentes necessidades. Os dois mais comuns são:
+
+FSx for Windows File Server: Como o nome diz, é um servidor de arquivos Windows completo na nuvem.
+
+Protocolo: Usa o protocolo SMB (Server Message Block), padrão do Windows.
+
+Recursos: Suporta tudo o que você espera de um servidor de arquivos Windows, incluindo integração com Active Directory, permissões NTFS e shadow copies.
+
+Uso Ideal: Perfeito para compartilhar arquivos entre instâncias EC2 Windows, aplicações .NET e migrar servidores de arquivos corporativos para a nuvem.
+
+FSx for Lustre: Um sistema de arquivos de altíssimo desempenho, otimizado para computação pesada.
+
+Uso Ideal: Cargas de trabalho como machine learning, análise de dados em grande escala e renderização de vídeo, onde a velocidade de leitura e escrita é crucial.
+
+
+EC2 Windows
+A AWS permite que você crie instâncias EC2 não apenas com Linux, mas também com diversas versões do Microsoft Windows Server. O funcionamento é muito parecido com o de uma instância Linux, mas com algumas diferenças importantes.
+
+AMI: Você seleciona uma AMI (Amazon Machine Image) de Windows Server (ex: 2019, 2022) ao criar a instância.
+
+Custos: O custo de uma instância Windows é um pouco maior, pois inclui o valor da licença do sistema operacional da Microsoft.
+
+Acesso: Em vez de usar SSH (linha de comando), o acesso a instâncias Windows é feito principalmente através do RDP (Remote Desktop Protocol). Isso abre uma interface gráfica completa do Windows, exatamente como se você estivesse sentado na frente do servidor.
+
+Autenticação: Para se conectar, a AWS usa o mesmo par de chaves (.pem) que você usa para Linux, mas de uma forma diferente. Você usa sua chave privada para descriptografar a senha de Administrador inicial, que a AWS gera aleatoriamente para você. Depois de obter a senha, você se conecta via RDP com o usuário "Administrator" e essa senha.
