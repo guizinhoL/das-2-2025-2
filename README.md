@@ -378,3 +378,98 @@ Custos: O custo de uma instância Windows é um pouco maior, pois inclui o valor
 Acesso: Em vez de usar SSH (linha de comando), o acesso a instâncias Windows é feito principalmente através do RDP (Remote Desktop Protocol). Isso abre uma interface gráfica completa do Windows, exatamente como se você estivesse sentado na frente do servidor.
 
 Autenticação: Para se conectar, a AWS usa o mesmo par de chaves (.pem) que você usa para Linux, mas de uma forma diferente. Você usa sua chave privada para descriptografar a senha de Administrador inicial, que a AWS gera aleatoriamente para você. Depois de obter a senha, você se conecta via RDP com o usuário "Administrator" e essa senha.
+
+
+
+
+# Aula 08/10/2025
+
+RBAC x ABAC (Controle de Acesso)
+
+RBAC (Baseado em Cargo): O acesso depende do seu papel (ex: "Gerente" acessa tudo). É mais simples.
+
+ABAC (Baseado em Atributos): O acesso depende de condições detalhadas (ex: "Gerente" acessando "do escritório" às "14h"). É mais seguro e específico.
+
+Identidade Federada
+
+Uso de uma única identidade confiável (ex: Google, Microsoft AD) para acessar vários sistemas diferentes (Single Sign-On), sem precisar criar um usuário novo para cada site.
+
+Criptografia Simétrica x Assimétrica
+
+Simétrica: Uma chave serve para trancar e a mesma serve para destrancar. É rápida (bom para dados em repouso), mas difícil de compartilhar a chave com segurança.
+
+Assimétrica: Usa um par de chaves (Pública para trancar, Privada para destrancar). É mais segura para transmitir informações pela internet (ex: HTTPS).
+
+Detecção de vulnerabilidade estática (SAST)
+
+Análise automática do código-fonte ("texto" do programa) antes de ele ser executado, procurando falhas de segurança escritas pelo programador.
+
+Detecção de intrusão (IDS)
+
+Monitoramento da rede em tempo real procurando atividades suspeitas (como alguém tentando adivinhar senhas) e gerando alertas.
+
+VPC Peering (Lab)
+
+Conexão direta e privada entre duas redes virtuais (VPCs) na nuvem, permitindo que elas conversem como se fossem locais, sem passar pela internet pública.
+
+
+#Aula 15/10/2025
+
+Métricas vs. Logs
+
+Métricas (Números): Dizem a saúde do sistema (ex: CPU em 90%, 500ms de latência).
+
+Logs (Histórias): Registram o que aconteceu detalhadamente (ex: "Ocorreu um erro de conexão no banco de dados às 14:03").
+
+Elasticidade
+
+Capacidade de aumentar e diminuir recursos automaticamente. Se ninguém está usando, o sistema encolhe para você pagar menos.
+
+Escalabilidade Horizontal
+
+Crescer adicionando mais máquinas lado a lado (Scale Out), em vez de aumentar o tamanho de uma máquina só. É o padrão da nuvem.
+
+Balanceador de Carga (Load Balancer)
+Imagem de Abre uma nova janela
+Shutterstock
+
+Distribui o tráfego dos usuários entre vários servidores. Se um servidor falhar, o balanceador para de mandar gente para lá, mantendo o site no ar.
+
+
+# Aula 22/10/2025 
+
+
+
+Permite criar toda a sua infraestrutura (servidores, redes, bancos) usando um arquivo de texto (código/modelo).
+
+Garante que, se você precisar recriar o ambiente, ele será exatamente idêntico ao anterior, sem erros manuais.
+
+#Aula 05/11/2025
+Caching (Cache de Conteúdo)
+
+Estratégia de guardar dados muito acessados em uma memória rápida (ou próxima do usuário).
+
+Isso reduz a carga no banco de dados principal e faz o site carregar muito mais rápido para o usuário final.
+
+
+
+
+#AWS CloudFormation (Infrastructure as Code)
+
+
+
+Desacoplamento com Amazon SQS
+
+Quebra a dependência direta entre partes do sistema usando filas.
+
+Se o "Sistema A" envia um pedido e o "Sistema B" (que processa) estiver fora do ar, o pedido fica salvo na fila e é processado assim que o B voltar. Nada se perde.
+
+#Aula 12/11/2025 
+
+Serverless e Microsserviços
+
+Serverless: Rodar código (ex: AWS Lambda) sem se preocupar com servidores. A nuvem gerencia toda a máquina por baixo e você paga apenas pelo tempo de execução.
+
+Microsserviços: Construir o software como pequenas peças independentes (Login, Carrinho, Pagamento) em vez de um bloco único, facilitando a atualização e manutenção.
+
+
